@@ -1,4 +1,5 @@
 import LeadCapture from "./lead-capture";
+import MediaPreview from "./media-preview";
 
 export const serverSmartComponentMap = {
   LEAD_CAPTURE: {
@@ -17,11 +18,26 @@ export const serverSmartComponentMap = {
       },
     },
   },
+  MEDIA_PREVIEW: {
+    title: "Media Preview",
+    iconUrl: null,
+    fields: {
+      url: {
+        displayName: "URL",
+        required: true,
+        type: "string",
+      },
+    },
+  },
 };
 
 export const clientSmartComponentMap = {
   LEAD_CAPTURE: {
     ...serverSmartComponentMap.LEAD_CAPTURE,
     reactComponent: LeadCapture,
+  },
+  MEDIA_PREVIEW: {
+    ...serverSmartComponentMap.MEDIA_PREVIEW,
+    reactComponent: MediaPreview,
   },
 };
