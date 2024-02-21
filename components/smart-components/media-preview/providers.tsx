@@ -1,5 +1,5 @@
 import Script from "next/script";
-
+import useSWR from "swr";
 
 export const SUPPORTED_PROVIDERS = [
   "Youtube",
