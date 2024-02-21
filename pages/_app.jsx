@@ -6,7 +6,7 @@ export default function MyApp({ Component, pageProps }) {
 	return( 
 		<>
 		<Component {...pageProps} />
-		<GoogleTagManager gtmId="G-KZJ8B54W4K" />
+		<GoogleTagManager gtmId="G-WC96XDYR3H" />
 		</>
 	)
 }
