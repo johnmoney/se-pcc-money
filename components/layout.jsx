@@ -39,17 +39,15 @@ export default function Layout({ children, footerMenu, preview }) {
         <Searchbar slot='items-right' />
       </Navbar>
 
-      <main className='mb-auto'>{children}</main>
+      <main className='mb-auto'>
+        <Container width="standard">
+          {children}
+        </Container>
+      </main>
       <Footer footerMenuItems={footerMenuItems}>
         <span className='mx-auto'>
-          © {new Date().getFullYear()} Built with{' '}
-          <a className='text-white hover:text-blue-100 underline' href='https://nextjs.org/'>
-            Next.js
-          </a>{' '}
-          and{' '}
-          <a className='text-blue-500 underline hover:text-blue-100' href='https://pantheon.io/'>
-            Pantheon Content Cloud
-          </a>
+          © {new Date().getFullYear()} Built with <a href='https://nextjs.org/'>Next.js</a> and{' '}
+          <a href='https://pantheon.io/'>Pantheon Content Cloud</a>
         </span>
       </Footer>
     </div>
