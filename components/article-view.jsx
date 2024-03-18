@@ -16,15 +16,18 @@ export default function ArticleView({ article }) {
 
   const hydratedArticle = data?.article ?? article;
 
+  console.log(hydratedArticle);
+
   return (
     <ArticleRenderer
+      __experimentalFlags={{ disableAllStyles: true }}
       article={hydratedArticle}
-      renderTitle={(titleElement) => (
+      renderTitle={() => (
         <div>
-          <div className="pds-ts-3xl">{titleElement}</div>
+          <h1 className="pds-ts-5xl">{hydratedArticle.title}</h1>
 
           {article.updatedAt ? (
-            <p className="py-2">
+            <p>
               Last Updated:{" "}
               {new Date(article.updatedAt).toLocaleDateString("en-US", {
                 year: "numeric",
@@ -34,7 +37,7 @@ export default function ArticleView({ article }) {
             </p>
           ) : null}
 
-          <hr className="mt-6 mb-8" />
+          <hr className="pds-spacing-mar-block-xl" />
         </div>
       )}
       smartComponentMap={clientSmartComponentMap}

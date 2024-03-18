@@ -15,7 +15,7 @@ export default function Layout({ children, footerMenu, preview }) {
   ];
 
   return (
-    <div className="min-h-screen max-h-screen min-w-screen max-w-screen flex flex-col overflow-x-hidden">
+    <div className="min-h-screen max-h-screen flex flex-col">
       {preview && <PreviewRibbon />}
 
       <Navbar

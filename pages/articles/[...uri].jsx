@@ -7,6 +7,7 @@ import { Tags } from "../../components/tags";
 import { getArticleBySlugOrId } from "../../lib/Articles";
 import { buildPantheonClientWithGrant } from "../../lib/PantheonClient";
 import { pantheonAPIOptions } from "../api/pantheoncloud/[...command]";
+import { Container } from "@pantheon-systems/pds-toolkit-react";
 
 export default function ArticlePage({ article, grant }) {
   const seoMetadata = getSeoMetadata(article);
@@ -31,9 +32,8 @@ export default function ArticlePage({ article, grant }) {
           }}
         />
 
-        <div className="max-w-screen-lg mx-auto mt-16 prose">
+        <div className="pds-spacing-pad-block-start-4xl max-w-screen-lg prose">
           <ArticleView article={article} />
-
           <Tags tags={article?.tags} />
         </div>
       </Layout>
