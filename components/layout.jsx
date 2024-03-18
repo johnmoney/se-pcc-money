@@ -1,5 +1,6 @@
-import { Footer, PreviewRibbon } from "@pantheon-systems/nextjs-kit";
+import { PreviewRibbon } from "@pantheon-systems/nextjs-kit";
 import Link from "next/link";
+import Footer from "./footer";
 import {
   Container,
   Navbar,
@@ -12,12 +13,6 @@ export default function Layout({ children, footerMenu, preview }) {
   const mainMenuItems = [
     { linkContent: <Link href="/articles">Articles</Link> },
   ];
-
-  const footerMenuItems = footerMenu?.map(({ path, label }) => ({
-    linkText: label,
-    href: path,
-    parent: null,
-  }));
 
   return (
     <div className="min-h-screen max-h-screen min-w-screen max-w-screen flex flex-col overflow-x-hidden">
@@ -37,13 +32,13 @@ export default function Layout({ children, footerMenu, preview }) {
           ariaLabel="Main Navigation"
           menuItems={mainMenuItems}
           mobileMenuMaxWidth={pdsConfig.mobileMenuBreakpoint}
-        ></NavMenu>
+        />
       </Navbar>
 
       <main className="mb-auto">
         <Container width="standard">{children}</Container>
       </main>
-      <Footer footerMenuItems={footerMenuItems}>
+      <Footer>
         <span className="mx-auto">
           © {new Date().getFullYear()} Built with{" "}
           <a href="https://nextjs.org/">Next.js</a> and{" "}
