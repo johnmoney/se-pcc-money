@@ -20,10 +20,7 @@ export default function Search({ articles, searchString }) {
     <div className="flex flex-col mx-auto mt-20 prose sm:prose-xl max-w-fit">
       <h1 className="h-full text-4xl prose text-center">
         Welcome to{" "}
-        <a
-          className="text-blue-600 no-underline hover:underline"
-          href="https://nextjs.org"
-        >
+        <a className="no-underline hover:underline" href="https://nextjs.org">
           Next.js!
         </a>
       </h1>

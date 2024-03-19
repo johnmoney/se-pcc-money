@@ -39,6 +39,13 @@ module.exports = {
       typography: {
         DEFAULT: {
           css: {
+            a: {
+              color: "var(--pds-color-interactive-link)",
+            },
+            "a:hover": {
+              color: "var(--pds-color-interactive-link-hover)",
+              textDecoration: "none",
+            },
             p: {
               marginBlockEnd: "1rem",
               marginBlockStart: 0,

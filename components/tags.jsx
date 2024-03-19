@@ -6,12 +6,7 @@ export const Tags = ({ tags }) => {
           Tags:&nbsp;
           {tags.map((x, i) => (
             <div key={x}>
-              <a
-                className="text-bold underline hover:text-blue-500 underline-offset-4"
-                href={`/tags?q=${encodeURIComponent(x)}`}
-              >
-                {x.toString()}
-              </a>
+              <a href={`/tags?q=${encodeURIComponent(x)}`}>{x.toString()}</a>
               {i < tags.length - 1 ? ", " : undefined}
             </div>
           ))}
