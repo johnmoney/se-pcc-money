@@ -36,12 +36,16 @@ export default function ArticlePage({ article, grant }) {
         />
 
         <div className="pds-spacing-pad-block-start-4xl max-w-screen-lg prose">
-          <h1 className="pds-ts-5xl">{article.title}</h1>
-          {new Date(article.publishedDate).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })}
+          <h1 className="pds-ts-5xl pds-spacing-mar-block-end-m">
+            {article.title}
+          </h1>
+          <p className="pds-spacing-mar-block-end-xl">
+            {new Date(article.publishedDate).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </p>
           <SidebarLayout sidebarMobileLocation="before">
             <article slot="content" id="pds-toc-source">
               <ArticleView article={article} id="article-content" />

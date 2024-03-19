@@ -41,6 +41,7 @@ module.exports = {
           css: {
             p: {
               marginBlockEnd: "1rem",
+              marginBlockStart: 0,
             },
             h1: {
               fontSize: "2.986rem",
@@ -49,7 +50,7 @@ module.exports = {
             h2: {
               fontSize: "2.074rem",
               marginBlockEnd: "1.25rem",
-              marginBlockStart: "2.441rem",
+              marginBlockStart: "3.052rem",
               fontWeight: "700",
             },
             h3: {
