@@ -6,9 +6,9 @@ export default function Footer({ children }) {
     <footer>
       <Container
         width="standard"
-        className="pds-spacing-pad-block-start-4xl pds-spacing-pad-block-end-2xl"
+        className="pds-spacing-pad-block-start-6xl pds-spacing-pad-block-end-2xl"
       >
-        <FlexContainer>{children}</FlexContainer>
+        <FlexContainer className="text-sm">{children}</FlexContainer>
       </Container>
     </footer>
   );
