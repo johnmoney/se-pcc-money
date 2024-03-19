@@ -11,9 +11,17 @@ import {
   SidebarLayout,
   TableOfContents,
 } from "@pantheon-systems/pds-toolkit-react";
+import { pdsConfig } from "../../pds.config";
 
 export default function ArticlePage({ article, grant }) {
   const seoMetadata = getSeoMetadata(article);
+
+  // Find how many times an h2 tag appears in the article.
+  const articleJson = article.content;
+  const h2TagCount = articleJson.split('"tag":"h2"').length;
+
+  // If there are more than 3 h2 tags, show the table of contents.
+  const showTOC = h2TagCount > pdsConfig.tableOfContentsHeadingCount;
 
   return (
     <PantheonProvider client={buildPantheonClientWithGrant(grant)}>
@@ -39,19 +47,25 @@ export default function ArticlePage({ article, grant }) {
           <h1 className="pds-ts-5xl pds-spacing-mar-block-end-m">
             {article.title}
           </h1>
-          <p className="pds-spacing-mar-block-end-xl">
+          <p className="pds-spacing-mar-block-end-3xl">
             {new Date(article.publishedDate).toLocaleDateString("en-US", {
               year: "numeric",
               month: "long",
               day: "numeric",
             })}
           </p>
-          <SidebarLayout sidebarMobileLocation="before">
-            <article slot="content" id="pds-toc-source">
-              <ArticleView article={article} id="article-content" />
-            </article>
-            <TableOfContents slot="sidebar" />
-          </SidebarLayout>
+
+          {showTOC ? (
+            <SidebarLayout sidebarMobileLocation="before">
+              <article slot="content" id="pds-toc-source">
+                <ArticleView article={article} id="article-content" />
+              </article>
+              <TableOfContents slot="sidebar" />
+            </SidebarLayout>
+          ) : (
+            <ArticleView article={article} id="article-content" />
+          )}
+
           <hr className="pds-spacing-mar-block-xl" />
           <Tags tags={article?.tags} />
           {article.updatedAt ? (

@@ -16,8 +16,6 @@ export default function ArticleView({ article }) {
 
   const hydratedArticle = data?.article ?? article;
 
-  // console.log(hydratedArticle);
-
   return (
     <ArticleRenderer
       __experimentalFlags={{ disableAllStyles: true }}
