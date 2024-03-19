@@ -7,7 +7,10 @@ import { Tags } from "../../components/tags";
 import { getArticleBySlugOrId } from "../../lib/Articles";
 import { buildPantheonClientWithGrant } from "../../lib/PantheonClient";
 import { pantheonAPIOptions } from "../api/pantheoncloud/[...command]";
-import { Container } from "@pantheon-systems/pds-toolkit-react";
+import {
+  SidebarLayout,
+  TableOfContents,
+} from "@pantheon-systems/pds-toolkit-react";
 
 export default function ArticlePage({ article, grant }) {
   const seoMetadata = getSeoMetadata(article);
@@ -33,8 +36,30 @@ export default function ArticlePage({ article, grant }) {
         />
 
         <div className="pds-spacing-pad-block-start-4xl max-w-screen-lg prose">
-          <ArticleView article={article} />
+          <h1 className="pds-ts-5xl">{article.title}</h1>
+          {new Date(article.publishedDate).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+          <SidebarLayout sidebarMobileLocation="before">
+            <article slot="content" id="pds-toc-source">
+              <ArticleView article={article} id="article-content" />
+            </article>
+            <TableOfContents slot="sidebar" />
+          </SidebarLayout>
+          <hr className="pds-spacing-mar-block-xl" />
           <Tags tags={article?.tags} />
+          {article.updatedAt ? (
+            <p className="pds-ts-s">
+              Last Updated:{" "}
+              {new Date(article.updatedAt).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </p>
+          ) : null}
         </div>
       </Layout>
     </PantheonProvider>
