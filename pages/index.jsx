@@ -1,14 +1,14 @@
 import { NextSeo } from "next-seo";
 import Image from "next/image";
-import { PostGrid } from "../components/grid";
 import Layout from "../components/layout";
+import { ArticleGrid } from "../components/article-grid";
 import { getAllArticles } from "../lib/Articles";
 import { pdsConfig } from "../pds.config";
 
 export default function Home({ articles }) {
   const HomepageHeader = () => (
-    <div className="flex flex-col mx-auto mt-20 prose sm:prose-xl max-w-fit">
-      <h1 className="h-full text-4xl prose text-center">Welcome</h1>
+    <div className="pds-spacing-mar-block-end-2xl pds-spacing-pad-block-start-4xl">
+      <h1 className="pds-ts-5xl text-center">Welcome</h1>
     </div>
   );
 
@@ -20,7 +20,7 @@ export default function Home({ articles }) {
       />
       <HomepageHeader />
       <section>
-        <PostGrid contentType="posts" data={articles} />
+        <ArticleGrid articles={articles} headingLevel="h2" />
       </section>
     </Layout>
   );

@@ -1,16 +1,11 @@
 import { Paginator } from "@pantheon-systems/nextjs-kit";
 import { NextSeo } from "next-seo";
-
-import { PageGrid } from "../../components/grid";
 import Layout from "../../components/layout";
 import PageHeader from "../../components/page-header";
+import { ArticleGrid } from "../../components/article-grid";
 import { getAllArticles } from "../../lib/Articles";
 
 export default function ArticlesListTemplate({ articles }) {
-  const RenderCurrentItems = ({ currentItems }) => {
-    return <PageGrid contentType="pages" data={currentItems} />;
-  };
-
   return (
     <Layout>
       <NextSeo
@@ -20,11 +15,7 @@ export default function ArticlesListTemplate({ articles }) {
       <div className="max-w-screen-lg mx-auto">
         <section>
           <PageHeader title="Articles" />
-          <Paginator
-            data={articles}
-            itemsPerPage={12}
-            Component={RenderCurrentItems}
-          />
+          <ArticleGrid articles={articles} headingLevel="h2" />
         </section>
       </div>
     </Layout>

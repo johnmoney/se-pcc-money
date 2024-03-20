@@ -20,7 +20,8 @@ export default function ArticlePage({ article, grant }) {
   const articleJson = article.content;
   const h2TagCount = articleJson.split('"tag":"h2"').length;
 
-  // If there are more than 3 h2 tags, show the table of contents.
+  // If there are more than a certain number of h2 tags, show the table of contents.
+  // This value is set in pds.config.js.
   const showTOC = h2TagCount > pdsConfig.tableOfContentsHeadingCount;
 
   return (
@@ -47,7 +48,7 @@ export default function ArticlePage({ article, grant }) {
           <h1 className="pds-ts-5xl pds-spacing-mar-block-end-m">
             {article.title}
           </h1>
-          <p className="pds-spacing-mar-block-end-3xl">
+          <p className="pds-spacing-mar-block-end-2xl">
             {new Date(article.publishedDate).toLocaleDateString("en-US", {
               year: "numeric",
               month: "long",
@@ -66,18 +67,8 @@ export default function ArticlePage({ article, grant }) {
             <ArticleView article={article} id="article-content" />
           )}
 
-          <hr className="pds-spacing-mar-block-xl" />
-          <Tags tags={article?.tags} />
-          {article.updatedAt ? (
-            <p className="pds-ts-s">
-              Last Updated:{" "}
-              {new Date(article.updatedAt).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </p>
-          ) : null}
+          <hr className="pds-spacing-mar-block-m" />
+          <Tags displayType="article" tags={article?.tags} />
         </div>
       </Layout>
     </PantheonProvider>
