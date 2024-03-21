@@ -37,8 +37,8 @@ export default function ArticlePage({ article, grant }) {
   const authorName = article.metadata.author;
 
   let displayDate = null;
-  if (typeof article.metadata.publicationDate !== "undefined") {
-    displayDate = article.metadata.publicationDate.msSinceEpoch;
+  if (typeof article.metadata.publicationDisplayDate !== "undefined") {
+    displayDate = article.metadata.publicationDisplayDate.msSinceEpoch;
   }
 
   return (
@@ -62,7 +62,7 @@ export default function ArticlePage({ article, grant }) {
         />
         <Container width="standard">
           <div className="pds-spacing-pad-block-start-4xl max-w-screen-lg">
-            <h1 className="pds-ts-5xl pds-spacing-mar-block-end-m">
+            <h1 className="pds-ts-5xl pds-spacing-mar-block-end-m font-bold">
               {article.title}
             </h1>
             <p className="pds-spacing-mar-block-end-2xl">
