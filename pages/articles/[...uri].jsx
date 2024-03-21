@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArticleRenderer } from "@pantheon-systems/pcc-react-sdk/components";
 import { PantheonProvider } from "@pantheon-systems/pcc-react-sdk";
 import { NextSeo } from "next-seo";
 import queryString from "query-string";
@@ -14,8 +15,6 @@ import {
   TableOfContents,
 } from "@pantheon-systems/pds-toolkit-react";
 import { pdsConfig } from "../../pds.config";
-
-import { ArticleRenderer } from "@pantheon-systems/pcc-react-sdk/components";
 
 export default function ArticlePage({ article, grant }) {
   const seoMetadata = getSeoMetadata(article);
