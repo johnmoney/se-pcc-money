@@ -6,3 +6,11 @@
 p {
   margin-block-end: 1rem;
 }
+
+/* TW hacks */
+.prose
+  :where(tbody tr:last-child):not(
+    :where([class~="not-prose"], [class~="not-prose"] *)
+  ) {
+  border-bottom-width: var(--pds-border-width-default);
+}

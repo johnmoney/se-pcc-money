@@ -43,6 +43,14 @@ module.exports = {
       typography: {
         DEFAULT: {
           css: {
+            "--tw-prose-body": "var(--pds-color-text-default)",
+            "--tw-prose-headings": "var(--pds-color-text-default)",
+            "--tw-prose-bold": "var(--pds-color-text-default)",
+            "--tw-prose-bullets": "var(--pds-color-text-default)",
+            "--tw-prose-counters": "var(--pds-color-text-default)",
+            "--tw-prose-hr": "var(--pds-color-border-default)",
+            "--tw-prose-th-borders": "var(--pds-color-border-default)",
+            "--tw-prose-td-borders": "var(--pds-color-border-default)",
             a: {
               color: "var(--pds-color-interactive-link)",
             },
