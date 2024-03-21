@@ -63,7 +63,7 @@ export default function ArticlePage({ article, grant }) {
         />
 
         <Container width="standard">
-          <div className="pds-spacing-pad-block-start-4xl max-w-screen-lg">
+          <div className="pds-spacing-pad-block-start-4xl max-w-screen-lg prose">
             {/* Render the header only, and not the body. */}
             <ArticleRenderer
               article={article}
