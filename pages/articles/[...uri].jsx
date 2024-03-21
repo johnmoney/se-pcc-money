@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { PantheonProvider } from "@pantheon-systems/pcc-react-sdk";
 import { NextSeo } from "next-seo";
 import queryString from "query-string";
@@ -8,6 +9,7 @@ import { getArticleBySlugOrId } from "../../lib/Articles";
 import { buildPantheonClientWithGrant } from "../../lib/PantheonClient";
 import { pantheonAPIOptions } from "../api/pantheoncloud/[...command]";
 import {
+  Container,
   SidebarLayout,
   TableOfContents,
 } from "@pantheon-systems/pds-toolkit-react";
@@ -23,6 +25,19 @@ export default function ArticlePage({ article, grant }) {
   // If there are more than a certain number of h2 tags, show the table of contents.
   // This value is set in pds.config.js.
   const showTOC = h2TagCount > pdsConfig.tableOfContentsHeadingCount;
+
+  // Main image styles
+  const imageStyle = {
+    height: "auto",
+    marginInline: "auto",
+  };
+
+  // Preprocess metadata for display.
+  const mainImage = article.metadata.image;
+  const authorName = article.metadata.author;
+  const publicationDate = article.metadata.publicationDate.msSinceEpoch;
+
+  console.log(publicationDate);
 
   return (
     <PantheonProvider client={buildPantheonClientWithGrant(grant)}>
@@ -43,33 +58,59 @@ export default function ArticlePage({ article, grant }) {
             },
           }}
         />
+        <Container width="standard">
+          <div className="pds-spacing-pad-block-start-4xl max-w-screen-lg prose">
+            <h1 className="pds-ts-5xl pds-spacing-mar-block-end-m">
+              {article.title}
+            </h1>
+            <p className="pds-spacing-mar-block-end-2xl">
+              {authorName && `By ${authorName}`}
+              {authorName && publicationDate && (
+                <span
+                  className="pds-spacing-mar-inline-xs"
+                  style={{
+                    color: "var(--pds-color-text-default-secondary)",
+                    fontWeight: "400",
+                  }}
+                >
+                  |
+                </span>
+              )}
 
-        <div className="pds-spacing-pad-block-start-4xl max-w-screen-lg prose">
-          <h1 className="pds-ts-5xl pds-spacing-mar-block-end-m">
-            {article.title}
-          </h1>
-          <p className="pds-spacing-mar-block-end-2xl">
-            {new Date(article.publishedDate).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </p>
+              {new Date(publicationDate).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </p>
 
-          {showTOC ? (
-            <SidebarLayout sidebarMobileLocation="before">
-              <article slot="content" id="pds-toc-source">
-                <ArticleView article={article} id="article-content" />
-              </article>
-              <TableOfContents slot="sidebar" />
-            </SidebarLayout>
-          ) : (
-            <ArticleView article={article} id="article-content" />
-          )}
+            {mainImage && (
+              <div className="pds-spacing-mar-block-end-m">
+                <Image
+                  src={mainImage}
+                  alt={""}
+                  style={imageStyle}
+                  width={600}
+                  height={450}
+                />
+              </div>
+            )}
 
-          <hr className="pds-spacing-mar-block-m" />
-          <Tags displayType="article" tags={article?.tags} />
-        </div>
+            {showTOC ? (
+              <SidebarLayout sidebarMobileLocation="before">
+                <article slot="content" id="pds-toc-source">
+                  {<ArticleView article={article} id="article-content" />}
+                </article>
+                <TableOfContents slot="sidebar" />
+              </SidebarLayout>
+            ) : (
+              <ArticleView article={article} id="article-content" />
+            )}
+
+            <hr className="pds-spacing-mar-block-m" />
+            <Tags displayType="article" tags={article?.tags} />
+          </div>
+        </Container>
       </Layout>
     </PantheonProvider>
   );
