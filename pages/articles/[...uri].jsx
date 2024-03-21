@@ -64,16 +64,13 @@ export default function ArticlePage({ article, grant }) {
 
         <Container width="standard">
           <div className="pds-spacing-pad-block-start-4xl max-w-screen-lg">
-            {/* This is a version of the title that pulls from the article renderer instead of the metadata. */}
+            {/* Render the header only, and not the body. */}
             <ArticleRenderer
               article={article}
               __experimentalFlags={{ disableAllStyles: true }}
-              bodyClassName="hide-article-body"
               headerClassName="pds-ts-5xl pds-spacing-mar-block-end-m font-bold"
+              renderBody={() => null}
             />
-            {/* <h1 className="pds-ts-5xl pds-spacing-mar-block-end-m font-bold">
-              {article.title}
-            </h1> */}
             <p className="pds-spacing-mar-block-end-2xl">
               {authorName && `By ${authorName}`}
               {authorName && displayDate && (

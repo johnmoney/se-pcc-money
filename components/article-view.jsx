@@ -21,7 +21,7 @@ export default function ArticleView({ article }) {
       __experimentalFlags={{ disableAllStyles: true }}
       article={hydratedArticle}
       bodyClassName="article-body"
-      renderTitle={() => <></>}
+      renderTitle={() => null}
       smartComponentMap={clientSmartComponentMap}
     />
   );
