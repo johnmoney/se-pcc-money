@@ -10,6 +10,10 @@ module.exports = {
       DEFAULT: "0.1875rem",
       container: "0.375rem",
     },
+    colors: {
+      link: "var(--pds-color-link-default)",
+      hover: "var(--pds-color-link-hover)",
+    },
     fontSize: {
       xs: ["0.694rem", { lineHeight: "1rem" }],
       sm: ["0.833rem", { lineHeight: "1.25rem" }],
