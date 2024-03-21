@@ -1,7 +1,7 @@
 export const Tags = ({ tags, displayType }) => {
   if (displayType === "article") {
     return (
-      <div className="tags inline-flex gap-x-1.5">
+      <div className="tags inline-flex gap-x-1.5 text-sm">
         {tags?.length ? (
           <>
             <div className="font-bold">Tags:</div>

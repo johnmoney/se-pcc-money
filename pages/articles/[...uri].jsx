@@ -35,7 +35,11 @@ export default function ArticlePage({ article, grant }) {
   // Preprocess metadata for display.
   const mainImage = article.metadata.mainImage;
   const authorName = article.metadata.author;
-  const publicationDate = article.metadata.publicationDate.msSinceEpoch;
+
+  let displayDate = null;
+  if (typeof article.metadata.publicationDate !== "undefined") {
+    displayDate = article.metadata.publicationDate.msSinceEpoch;
+  }
 
   return (
     <PantheonProvider client={buildPantheonClientWithGrant(grant)}>
@@ -63,7 +67,7 @@ export default function ArticlePage({ article, grant }) {
             </h1>
             <p className="pds-spacing-mar-block-end-2xl">
               {authorName && `By ${authorName}`}
-              {authorName && publicationDate && (
+              {authorName && displayDate && (
                 <span
                   className="pds-spacing-mar-inline-xs"
                   style={{
@@ -74,12 +78,12 @@ export default function ArticlePage({ article, grant }) {
                   |
                 </span>
               )}
-
-              {new Date(publicationDate).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
+              {displayDate &&
+                new Date(displayDate).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
             </p>
 
             {mainImage && (
@@ -106,7 +110,17 @@ export default function ArticlePage({ article, grant }) {
             )}
 
             <hr className="pds-spacing-mar-block-m" />
-            <Tags displayType="article" tags={article?.tags} />
+            <div className="article-footer flex gap-x-1.5 justify-between">
+              <Tags displayType="article" tags={article?.tags} />
+              <div className="article-updated inline-flex gap-x-1.5 text-sm">
+                <div className="font-bold">Updated: </div>
+                {new Date(article.publishedDate).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </div>
+            </div>
           </div>
         </Container>
       </Layout>
