@@ -39,6 +39,55 @@ module.exports = {
       wider: "0.04em",
       widest: "0.06em",
     },
-    extend: {},
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            "--tw-prose-body": "var(--pds-color-text-default)",
+            "--tw-prose-headings": "var(--pds-color-text-default)",
+            "--tw-prose-bold": "var(--pds-color-text-default)",
+            "--tw-prose-bullets": "var(--pds-color-text-default)",
+            "--tw-prose-counters": "var(--pds-color-text-default)",
+            "--tw-prose-hr": "var(--pds-color-border-default)",
+            "--tw-prose-th-borders": "var(--pds-color-border-default)",
+            "--tw-prose-td-borders": "var(--pds-color-border-default)",
+            a: {
+              color: "var(--pds-color-interactive-link)",
+            },
+            "a:hover": {
+              color: "var(--pds-color-interactive-link-hover)",
+              textDecoration: "none",
+            },
+            p: {
+              marginBlockEnd: "1rem",
+              marginBlockStart: 0,
+            },
+            h1: {
+              fontSize: "2.986rem",
+              fontWeight: "700",
+            },
+            h2: {
+              fontSize: "2.074rem",
+              marginBlockEnd: "1.25rem",
+              marginBlockStart: "3.052rem",
+              fontWeight: "700",
+            },
+            h3: {
+              fontSize: "1.728rem",
+              marginBlockEnd: "1.25rem",
+              marginBlockStart: "2.441rem",
+              fontWeight: "700",
+            },
+            h4: {
+              fontSize: "1.44rem",
+              marginBlockEnd: "1.25rem",
+              marginBlockStart: "1.953rem",
+              fontWeight: "700",
+            },
+          },
+        },
+      },
+    },
   },
+  plugins: [require("@tailwindcss/typography")],
 };
