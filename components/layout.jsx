@@ -1,70 +1,56 @@
-import { Footer, PreviewRibbon } from "@pantheon-systems/nextjs-kit";
+import { PreviewRibbon } from "@pantheon-systems/nextjs-kit";
 import Link from "next/link";
-import { Searchbar } from "./searchbar";
+import Footer from "./footer";
+import {
+  Container,
+  Navbar,
+  NavMenu,
+} from "@pantheon-systems/pds-toolkit-react";
+
+import { pdsConfig } from "../pds.config";
 
 export default function Layout({ children, footerMenu, preview }) {
-  const navItems = [
-    {
-      linkText: "🏠 Home",
-      href: "/",
-    },
-    {
-      linkText: "📑 Articles",
-      href: "/articles",
-    },
-    {
-      linkText: "⚛️ Examples",
-      href: "/examples",
-    },
+  const mainMenuItems = [
+    { linkContent: <Link href="/articles">Articles</Link> },
   ];
 
-  const footerMenuItems = footerMenu?.map(({ path, label }) => ({
-    linkText: label,
-    href: path,
-    parent: null,
-  }));
-
   return (
-    <div className="min-h-screen max-h-screen min-w-screen max-w-screen flex flex-col overflow-x-hidden">
+    <div className="min-h-screen max-h-screen flex flex-col">
       {preview && <PreviewRibbon />}
-      <div className="ps-my-0 ps-pt-10 ps-px-5 ps-text-xl">
-        <nav>
-          <ul className="ps-flex ps-flex-row ps-flex-wrap sm:ps-flex-nowrap ps-list-none ps-justify-between max-w-screen-lg ps-mx-auto">
-            {navItems.map((item) => {
-              return (
-                <li
-                  className={`${item.href === "/" ? "ps-mr-auto" : "ps-mx-4"}`}
-                  key={item.href}
-                >
-                  <Link
-                    className="ps-font-sans hover:ps-underline"
-                    href={item.href}
-                  >
-                    {item.linkText}
-                  </Link>
-                </li>
-              );
-            })}
-            <div>
-              <Searchbar />
-            </div>
-          </ul>
-        </nav>
-      </div>
-      <main className="mb-auto">{children}</main>
-      <Footer footerMenuItems={footerMenuItems}>
+
+      <Navbar
+        mobileMenuMaxWidth={pdsConfig.mobileMenuBreakpoint}
+        containerWidth="standard"
+        logoDisplay="sub-brand"
+        logoSubBrand={{
+          text: pdsConfig.siteName,
+          link: <Link href="/">Home</Link>,
+        }}
+      >
+        <NavMenu
+          slot="items-right"
+          ariaLabel="Main Navigation"
+          menuItems={mainMenuItems}
+          mobileMenuMaxWidth={pdsConfig.mobileMenuBreakpoint}
+        />
+      </Navbar>
+
+      <main className="mb-auto">
+        <Container width="standard">{children}</Container>
+      </main>
+      <Footer>
         <span className="mx-auto">
           © {new Date().getFullYear()} Built with{" "}
           <a
-            className="text-white hover:text-blue-100 underline"
             href="https://nextjs.org/"
+            className="text-link hover:text-hover underline hover:no-underline"
           >
             Next.js
           </a>{" "}
           and{" "}
           <a
-            className="text-blue-500 underline hover:text-blue-100"
             href="https://pantheon.io/"
+            className="text-link hover:text-hover underline hover:no-underline"
           >
             Pantheon Content Cloud
           </a>

@@ -1,7 +1,7 @@
 export default function PageHeader({ title }) {
-	return (
-		<header className="prose text-2xl mx-auto mt-20">
-			<h1 className="text-center mx-auto">{title}</h1>
-		</header>
-	);
+  return (
+    <header className="pds-spacing-mar-block-end-4xl pds-spacing-pad-block-start-4xl">
+      <h1 className="pds-ts-5xl text-center font-bold">{title}</h1>
+    </header>
+  );
 }

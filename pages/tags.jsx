@@ -19,15 +19,7 @@ export default function TagSearch({ articles, tags, searchString }) {
 
   const HomepageHeader = () => (
     <div className="flex flex-col mx-auto mt-20 prose sm:prose-xl max-w-fit">
-      <h1 className="h-full text-4xl prose text-center">
-        Welcome to&quot;
-        <a
-          className="text-blue-600 no-underline hover:underline"
-          href="https://nextjs.org"
-        >
-          Next.js!
-        </a>
-      </h1>
+      <h1 className="h-full text-4xl prose text-center">Welcome</h1>
       <div className="text-2xl">
         <div className="flex items-center justify-center p-4 text-white bg-black rounded">
           Decoupled PCC on{" "}
