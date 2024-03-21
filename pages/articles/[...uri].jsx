@@ -57,7 +57,7 @@ export default function ArticlePage({ article, grant }) {
           }}
         />
         <Container width="standard">
-          <div className="pds-spacing-pad-block-start-4xl max-w-screen-lg prose">
+          <div className="pds-spacing-pad-block-start-4xl max-w-screen-lg">
             <h1 className="pds-ts-5xl pds-spacing-mar-block-end-m">
               {article.title}
             </h1>

@@ -2,3 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* port back to PDS */
+
+p {
+  margin-block-end: 1rem;
+}
+
+h2 {
+  margin-block-end: 1.25rem;
+  margin-block-start: 3.052rem;
+}
+
+h3 {
+  margin-block-end: 1.25rem;
+  margin-block-start: 2.441rem;
+}
+
+h4 {
+  margin-block-end: 1.25rem;
+  margin-block-start: 1.953rem;
+}
