@@ -15,6 +15,8 @@ import {
 } from "@pantheon-systems/pds-toolkit-react";
 import { pdsConfig } from "../../pds.config";
 
+import { ArticleRenderer } from "@pantheon-systems/pcc-react-sdk/components";
+
 export default function ArticlePage({ article, grant }) {
   const seoMetadata = getSeoMetadata(article);
 
@@ -60,11 +62,19 @@ export default function ArticlePage({ article, grant }) {
             },
           }}
         />
+
         <Container width="standard">
           <div className="pds-spacing-pad-block-start-4xl max-w-screen-lg">
-            <h1 className="pds-ts-5xl pds-spacing-mar-block-end-m font-bold">
+            {/* This is a version of the title that pulls from the article renderer instead of the metadata. */}
+            <ArticleRenderer
+              article={article}
+              __experimentalFlags={{ disableAllStyles: true }}
+              bodyClassName="hide-article-body"
+              headerClassName="pds-ts-5xl pds-spacing-mar-block-end-m font-bold"
+            />
+            {/* <h1 className="pds-ts-5xl pds-spacing-mar-block-end-m font-bold">
               {article.title}
-            </h1>
+            </h1> */}
             <p className="pds-spacing-mar-block-end-2xl">
               {authorName && `By ${authorName}`}
               {authorName && displayDate && (

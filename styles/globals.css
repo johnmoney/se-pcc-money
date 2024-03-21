@@ -10,3 +10,7 @@ p {
 td > p:last-child {
   margin-block-end: 0;
 }
+
+.hide-article-body {
+  display: none;
+}
