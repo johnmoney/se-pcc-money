@@ -33,11 +33,9 @@ export default function ArticlePage({ article, grant }) {
   };
 
   // Preprocess metadata for display.
-  const mainImage = article.metadata.image;
+  const mainImage = article.metadata.mainImage;
   const authorName = article.metadata.author;
   const publicationDate = article.metadata.publicationDate.msSinceEpoch;
-
-  console.log(publicationDate);
 
   return (
     <PantheonProvider client={buildPantheonClientWithGrant(grant)}>

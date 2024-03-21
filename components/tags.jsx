@@ -16,10 +16,6 @@ export const Tags = ({ tags, displayType }) => {
       </div>
     );
   } else {
-    return (
-      <div className="tags inline-flex gap-x-1.5">
-        <p>tags</p>
-      </div>
-    );
+    return null;
   }
 };
