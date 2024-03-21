@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 /* port back to PDS */
-
 p {
   margin-block-end: 1rem;
 }
@@ -21,4 +20,8 @@ h3 {
 h4 {
   margin-block-end: 1.25rem;
   margin-block-start: 1.953rem;
+}
+
+td > p:last-child {
+  margin-block-end: 0;
 }
