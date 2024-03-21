@@ -1,4 +1,3 @@
-import { forwardRef } from "react";
 import { getPreviewComponentFromURL, SUPPORTED_PROVIDERS } from "./providers";
 
 interface Props {
@@ -12,7 +11,7 @@ const MediaPreview = ({ url }: Props) => {
     return (
       <div className="max-w-[300px] w-full outline outline-black/10 p-4 rounded-md">
         <p className="my-2 text-lg font-medium">
-          Unsupported Media Preview URL
+          Unsupported Media Preview URL &quot;{url}&quot;
         </p>
         <p className="text-sm">
           Supported Platforms: {SUPPORTED_PROVIDERS.join(", ")}
@@ -25,3 +24,4 @@ const MediaPreview = ({ url }: Props) => {
 };
 
 export default MediaPreview;
+

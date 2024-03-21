@@ -1,7 +1,12 @@
+import {
+  ServersideSmartComponentMap,
+  SmartComponentMap,
+} from "@pantheon-systems/pcc-react-sdk/components";
 import LeadCapture from "./lead-capture";
 import MediaPreview from "./media-preview";
+import googleMap from "./google-map";
 
-export const serverSmartComponentMap = {
+export const serverSmartComponentMap: ServersideSmartComponentMap = {
   LEAD_CAPTURE: {
     title: "Lead Capture Form",
     iconUrl: null,
@@ -29,9 +34,20 @@ export const serverSmartComponentMap = {
       },
     },
   },
+  GOOGLE_MAP: {
+    title: "Google Map",
+    iconUrl: null,
+    fields: {
+      location: {
+        displayName: "Location",
+        required: true,
+        type: "string",
+      },
+    },
+  },
 };
 
-export const clientSmartComponentMap = {
+export const clientSmartComponentMap: SmartComponentMap = {
   LEAD_CAPTURE: {
     ...serverSmartComponentMap.LEAD_CAPTURE,
     reactComponent: LeadCapture,
@@ -39,5 +55,9 @@ export const clientSmartComponentMap = {
   MEDIA_PREVIEW: {
     ...serverSmartComponentMap.MEDIA_PREVIEW,
     reactComponent: MediaPreview,
+  },
+  GOOGLE_MAP: {
+    ...serverSmartComponentMap.MEDIA_PREVIEW,
+    reactComponent: googleMap,
   },
 };

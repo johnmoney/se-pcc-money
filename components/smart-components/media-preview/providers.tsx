@@ -8,60 +8,70 @@ export const SUPPORTED_PROVIDERS = [
   "X",
   "Instagram",
   "DailyMotion",
-  "Loom"
+  "Loom",
 ];
 
+interface EmbedProps {
+  url: string;
+}
+
 export function getPreviewComponentFromURL(url: string) {
-  const urlObj = new URL(url);
-  const hostname = urlObj.hostname;
-  const hostnameParts = hostname.split(".");
-  const provider = hostnameParts[hostnameParts.length - 2];
+  if (!url) return null;
 
-  switch (provider.toLowerCase()) {
-    case "youtube":
-    case "youtu":
-    case "yt":
-      return <YoutubePreview url={url} />;
+  try {
+    let urlWithProtocol = url;
 
-    case "twitter":
-    case "x":
-      return <TwitterPreview url={url} />;
+    if (url.indexOf("http://") !== -1 && url.indexOf("https://") !== -1) {
+      urlWithProtocol = `https://${url}`;
+    }
 
-    case "vimeo":
-      return <VimeoPreview url={url} />;
-    case "instagram":
-      return <InstagramPreview url={url} />;
-    case "dailymotion":
-      return <DailyMotionPreview url={url} />;
-    case "loom":
-      return <LoomPreview url={url} />;
-    default:
-      return null;
+    const urlObj = new URL(urlWithProtocol);
+    const hostname = urlObj.hostname;
+    const hostnameParts = hostname.split(".");
+    const provider = hostnameParts[hostnameParts.length - 2];
+
+    switch (provider.toLowerCase()) {
+      case "youtube":
+      case "youtu":
+      case "yt":
+        return <YoutubePreview url={urlWithProtocol} />;
+
+      case "twitter":
+      case "x":
+        return <TwitterPreview url={urlWithProtocol} />;
+
+      case "vimeo":
+        return <VimeoPreview url={urlWithProtocol} />;
+      case "instagram":
+        return <InstagramPreview url={urlWithProtocol} />;
+      case "dailymotion":
+        return <DailyMotionPreview url={urlWithProtocol} />;
+      case "loom":
+        return <LoomPreview url={urlWithProtocol} />;
+      default:
+        return null;
+    }
+  } catch (e) {
+    console.error("Media smart component render failed", e, { url });
+    return null;
   }
 }
 
-function VimeoPreview({ url }: { url: string }) {
-  const getVimeoVideoId = (url: string) => {
-    const urlObj = new URL(url);
-    const pathname = urlObj.pathname;
-    const pathnameParts = pathname.split("/");
-    return pathnameParts[pathnameParts.length - 1];
-  };
+function extractVideoId(url: string) {
+  const urlObj = new URL(url);
+  const pathname = urlObj.pathname;
+  const pathnameParts = pathname.split("/");
+  return pathnameParts[pathnameParts.length - 1];
+}
 
-  const embedUrl = `https://player.vimeo.com/video/${getVimeoVideoId(url)}`;
+function VimeoPreview({ url }: EmbedProps) {
+  const embedUrl = `https://player.vimeo.com/video/${extractVideoId(url)}`;
 
   return <iframe src={embedUrl} className="w-full max-w-[560px] h-80" />;
 }
 
-function DailyMotionPreview({ url }: { url: string }) {
-  const getDailyMotionVideoId = (url: string) => {
-    const urlObj = new URL(url);
-    const pathname = urlObj.pathname;
-    const pathnameParts = pathname.split("/");
-    return pathnameParts[pathnameParts.length - 1];
-  };
-
-  const embedUrl = `https://www.dailymotion.com/embed/video/${getDailyMotionVideoId(
+function DailyMotionPreview({ url }: EmbedProps) {
+  const embedUrl = `https://www.dailymotion.com/embed/video/${extractVideoId(
     url
   )}`;
 
@@ -77,7 +87,7 @@ interface OEmbedResponse {
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-function YoutubePreview({ url }: { url: string }) {
+function YoutubePreview({ url }: EmbedProps) {
   const { data, error, isLoading } = useSWR<OEmbedResponse>(
     `/api/utils/oembed?url=${encodeURIComponent(url)}&type=youtube`,
     fetcher
@@ -94,7 +104,7 @@ function YoutubePreview({ url }: { url: string }) {
   return <div dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
-function TwitterPreview({ url }: { url: string }) {
+function TwitterPreview({ url }: EmbedProps) {
   // Replace X with Twitter
   const twitterURL = url.replace("x.com", "twitter.com");
 
@@ -117,7 +127,19 @@ function TwitterPreview({ url }: { url: string }) {
   );
 }
 
-function InstagramPreview({ url }: { url: string }) {
+function LoomPreview({ url }: EmbedProps) {
+  return (
+    <div>
+      <iframe
+        src={`https://www.loom.com/embed/${extractVideoId(url)}`}
+        allowFullScreen
+        className="w-full max-w-[560px] h-96"
+      ></iframe>
+    </div>
+  );
+}
+
+function InstagramPreview({ url }: EmbedProps) {
   const { data, error, isLoading } = useSWR<OEmbedResponse>(
     `/api/utils/oembed?url=${encodeURIComponent(url)}&type=instagram`,
     fetcher
@@ -135,18 +157,4 @@ function InstagramPreview({ url }: { url: string }) {
       <Script src="https://www.instagram.com/embed.js" />
     </>
   );
-}
-
-function LoomPreview({ url }: { url: string }) {
-  const getLoomVideoId = (url: string) => {
-    const urlObj = new URL(url);
-    const pathname = urlObj.pathname;
-    const pathnameParts = pathname.split("/");
-    return pathnameParts[pathnameParts.length - 1];
-  };
-  const embedUrl = `https://www.loom.com/embed/${getLoomVideoId(url)}`;
-
-  return <iframe src={embedUrl} className="w-full max-w-[560px] h-80" />;
-  
-
 }
