@@ -30,7 +30,8 @@ const nextConfig = {
   reactStrictMode: true,
   env: {
     PCC_SITE_ID: process.env.PCC_SITE_ID,
-    PCC_API_KEY: process.env.PCC_TOKEN,
+    PCC_TOKEN: process.env.PCC_TOKEN,
+    GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
     ...(process.env.PCC_HOST && { PCC_HOST: process.env.PCC_HOST }),
   },
   output: "standalone",
