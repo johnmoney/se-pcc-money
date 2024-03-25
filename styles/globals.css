@@ -7,10 +7,10 @@ p {
   margin-block-end: 1rem;
 }
 
-td > p:last-child {
-  margin-block-end: 0;
-}
-
-.hide-article-body {
-  display: none;
+/* TW hacks */
+.prose
+  :where(tbody tr:last-child):not(
+    :where([class~="not-prose"], [class~="not-prose"] *)
+  ) {
+  border-bottom-width: var(--pds-border-width-default);
 }
