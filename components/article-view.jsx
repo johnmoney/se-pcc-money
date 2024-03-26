@@ -94,7 +94,11 @@ export default function ArticleView({ article }) {
         {/* Now render the body. */}
         {showTOC ? (
           <SidebarLayout sidebarMobileLocation="before">
-            <article slot="content" id="pds-toc-source">
+            <article
+              slot="content"
+              id="pds-toc-source"
+              class="max-w-screen-lg prose"
+            >
               <ArticleRenderer
                 __experimentalFlags={{ disableAllStyles: true }}
                 article={hydratedArticle}
@@ -106,7 +110,7 @@ export default function ArticleView({ article }) {
             <TableOfContents slot="sidebar" />
           </SidebarLayout>
         ) : (
-          <article>
+          <article class="max-w-screen-lg prose">
             <ArticleRenderer
               __experimentalFlags={{ disableAllStyles: true }}
               article={hydratedArticle}
