@@ -57,7 +57,6 @@ export default function ArticleView({ article }) {
           headerClassName="pds-ts-5xl pds-spacing-mar-block-end-m font-bold"
           renderBody={() => null}
         />
-
         {/* Byline and date. */}
         <p className="pds-spacing-mar-block-end-2xl">
           {authorName && `By ${authorName}`}
@@ -79,7 +78,6 @@ export default function ArticleView({ article }) {
               day: "numeric",
             })}
         </p>
-
         {/* Main image. */}
         {mainImage && (
           <div className="pds-spacing-mar-block-end-m">
@@ -100,7 +98,7 @@ export default function ArticleView({ article }) {
               <ArticleRenderer
                 __experimentalFlags={{ disableAllStyles: true }}
                 article={hydratedArticle}
-                bodyClassName="article-body prose"
+                bodyClassName="article-body"
                 renderTitle={() => null}
                 smartComponentMap={clientSmartComponentMap}
               />
@@ -108,15 +106,16 @@ export default function ArticleView({ article }) {
             <TableOfContents slot="sidebar" />
           </SidebarLayout>
         ) : (
-          <ArticleRenderer
-            __experimentalFlags={{ disableAllStyles: true }}
-            article={hydratedArticle}
-            bodyClassName="article-body prose"
-            renderTitle={() => null}
-            smartComponentMap={clientSmartComponentMap}
-          />
+          <article>
+            <ArticleRenderer
+              __experimentalFlags={{ disableAllStyles: true }}
+              article={hydratedArticle}
+              bodyClassName="article-body"
+              renderTitle={() => null}
+              smartComponentMap={clientSmartComponentMap}
+            />
+          </article>
         )}
-
         {/* Article footer info. */}
         <hr className="pds-spacing-mar-block-m" />
         <div className="article-footer flex gap-x-1.5 justify-between">
