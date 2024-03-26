@@ -1,46 +1,14 @@
-import Image from "next/image";
-import { ArticleRenderer } from "@pantheon-systems/pcc-react-sdk/components";
 import { PantheonProvider } from "@pantheon-systems/pcc-react-sdk";
 import { NextSeo } from "next-seo";
 import queryString from "query-string";
 import ArticleView from "../../components/article-view";
 import Layout from "../../components/layout";
-import { Tags } from "../../components/tags";
 import { getArticleBySlugOrId } from "../../lib/Articles";
 import { buildPantheonClientWithGrant } from "../../lib/PantheonClient";
 import { pantheonAPIOptions } from "../api/pantheoncloud/[...command]";
-import {
-  Container,
-  SidebarLayout,
-  TableOfContents,
-} from "@pantheon-systems/pds-toolkit-react";
-import { pdsConfig } from "../../pds.config";
 
 export default function ArticlePage({ article, grant }) {
   const seoMetadata = getSeoMetadata(article);
-
-  // Find how many times an h2 tag appears in the article.
-  const articleJson = article.content;
-  const h2TagCount = articleJson.split('"tag":"h2"').length;
-
-  // If there are more than a certain number of h2 tags, show the table of contents.
-  // This value is set in pds.config.js.
-  const showTOC = h2TagCount > pdsConfig.tableOfContentsHeadingCount;
-
-  // Main image styles
-  const imageStyle = {
-    height: "auto",
-    marginInline: "auto",
-  };
-
-  // Preprocess metadata for display.
-  const mainImage = article.metadata.mainImage;
-  const authorName = article.metadata.author;
-
-  let displayDate = null;
-  if (typeof article.metadata.publicationDisplayDate !== "undefined") {
-    displayDate = article.metadata.publicationDisplayDate.msSinceEpoch;
-  }
 
   return (
     <PantheonProvider client={buildPantheonClientWithGrant(grant)}>
@@ -62,73 +30,7 @@ export default function ArticlePage({ article, grant }) {
           }}
         />
 
-        <Container width="standard">
-          <div className="pds-spacing-pad-block-start-4xl max-w-screen-lg prose">
-            {/* Render the header only, and not the body. */}
-            <ArticleRenderer
-              article={article}
-              __experimentalFlags={{ disableAllStyles: true }}
-              headerClassName="pds-ts-5xl pds-spacing-mar-block-end-m font-bold"
-              renderBody={() => null}
-            />
-            <p className="pds-spacing-mar-block-end-2xl">
-              {authorName && `By ${authorName}`}
-              {authorName && displayDate && (
-                <span
-                  className="pds-spacing-mar-inline-xs"
-                  style={{
-                    color: "var(--pds-color-text-default-secondary)",
-                    fontWeight: "400",
-                  }}
-                >
-                  |
-                </span>
-              )}
-              {displayDate &&
-                new Date(displayDate).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-            </p>
-
-            {mainImage && (
-              <div className="pds-spacing-mar-block-end-m">
-                <Image
-                  src={mainImage}
-                  alt={""}
-                  style={imageStyle}
-                  width={600}
-                  height={450}
-                />
-              </div>
-            )}
-
-            {showTOC ? (
-              <SidebarLayout sidebarMobileLocation="before">
-                <article slot="content" id="pds-toc-source">
-                  {<ArticleView article={article} id="article-content" />}
-                </article>
-                <TableOfContents slot="sidebar" />
-              </SidebarLayout>
-            ) : (
-              <ArticleView article={article} id="article-content" />
-            )}
-
-            <hr className="pds-spacing-mar-block-m" />
-            <div className="article-footer flex gap-x-1.5 justify-between">
-              <Tags displayType="article" tags={article?.tags} />
-              <div className="article-updated inline-flex gap-x-1.5 text-sm">
-                <div className="font-bold">Updated: </div>
-                {new Date(article.publishedDate).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </div>
-            </div>
-          </div>
-        </Container>
+        <ArticleView article={article} id="article-content" />
       </Layout>
     </PantheonProvider>
   );
