@@ -20,6 +20,13 @@ export default function ArticlePage({ article, grant }) {
             type: "website",
             title: seoMetadata.title,
             description: seoMetadata.description,
+            ...(seoMetadata.ogimage && {
+            images: [
+              {
+                url: seoMetadata.ogimage
+              }
+            ]
+          }),
             article: {
               authors: seoMetadata.authors,
               tags: seoMetadata.tags,
@@ -87,19 +94,25 @@ const getSeoMetadata = (article) => {
   const tags = article.tags && article.tags.length > 0 ? article.tags : [];
   let authors = [];
   let publishedTime = null;
-
+  let description = null;
+  let ogimage = null;
   // Collecting data from metadata fields
   Object.entries(article.metadata || {}).forEach(([key, val]) => {
     if (key.toLowerCase().trim() === "author" && val) authors = [val];
     else if (key.toLowerCase().trim() === "date" && isDateInputObject(val))
       publishedTime = new Date(val.msSinceEpoch).toISOString();
+    else if (key.toLowerCase().trim() === "description" && val)
+      description = [val];
+      else if (key.toLowerCase().trim() === "cardimage" && val)
+      ogimage = [val];
   });
 
   return {
     title: article.title,
-    description: "Article hosted using Pantheon Content Cloud",
+    description,
     tags,
     authors,
     publishedTime,
+    ogimage,
   };
 };
