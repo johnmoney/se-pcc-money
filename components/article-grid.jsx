@@ -11,7 +11,7 @@ export const ArticleGrid = ({ articles, headingLevel }) => {
       {articles.map((article) => {
         // Preprocess metadata for display.
         const cardImage = article.metadata.cardImage;
-        const articleSummary = article.metadata.summary;
+        const articleSummary = article.metadata.Description;
 
         return (
           <Card
