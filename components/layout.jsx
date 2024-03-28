@@ -40,20 +40,7 @@ export default function Layout({ children, footerMenu, preview }) {
       </main>
       <Footer>
         <span className="mx-auto">
-          © {new Date().getFullYear()} Built with{" "}
-          <a
-            href="https://nextjs.org/"
-            className="text-link hover:text-hover underline hover:no-underline"
-          >
-            Next.js
-          </a>{" "}
-          and{" "}
-          <a
-            href="https://pantheon.io/"
-            className="text-link hover:text-hover underline hover:no-underline"
-          >
-            Pantheon Content Cloud
-          </a>
+ 
         </span>
       </Footer>
     </div>
