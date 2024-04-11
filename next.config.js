@@ -36,7 +36,7 @@ const nextConfig = {
   },
   output: "standalone",
   images: {
-    domains: ["cdn.bfldr.com"],
+    domains: ["cdn.bfldr.com","storage.googleapis.com"],
   },
 };
 
