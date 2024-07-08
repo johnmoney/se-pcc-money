@@ -14,3 +14,17 @@ p {
   ) {
   border-bottom-width: var(--pds-border-width-default);
 }
+
+section.hero-section {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;  
+}
+.hero-section h1,
+.hero-section .pds-input-text,
+.hero-section input#search-form::placeholder {
+  color: #FFF;
+}
