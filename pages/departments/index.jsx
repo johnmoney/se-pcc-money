@@ -2,7 +2,7 @@ import { Paginator } from "@pantheon-systems/nextjs-kit";
 import { NextSeo } from "next-seo";
 import Layout from "../../components/layout";
 import PageHeader from "../../components/page-header";
-import { ArticleGrid } from "../../components/article-grid";
+import { DepartmentGrid } from "../../components/department-grid";
 import { getAllArticles } from "../../lib/Articles";
 
 export default function ArticlesListTemplate({ articles }) {
@@ -14,8 +14,8 @@ export default function ArticlesListTemplate({ articles }) {
       />
       
       <section>
-        <PageHeader title="City Municipality News" />
-        <ArticleGrid articles={articles} headingLevel="h2" />
+        <PageHeader title="City Municipality Services and Departments" />
+        <DepartmentGrid articles={articles} headingLevel="h2" />
       </section>
     </Layout>
   );

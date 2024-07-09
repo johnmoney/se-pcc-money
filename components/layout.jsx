@@ -12,9 +12,9 @@ import { pdsConfig } from "../pds.config";
 export default function Layout({ children, footerMenu, preview }) {
   const mainMenuItems = [
     { linkContent: <Link href="/">Home</Link> },
-    { linkContent: <Link href="/articles">Departments</Link> },
+    { linkContent: <Link href="/departments">Departments</Link> },
     { linkContent: <Link href="/articles">News</Link> },
-    { linkContent: <Link href="/articles">Contact</Link> },
+    { linkContent: <Link href="/about">About</Link> },
   ];
 
   return (

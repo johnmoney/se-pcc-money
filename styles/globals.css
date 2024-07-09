@@ -42,3 +42,18 @@ section.hero-section {
 .hero-section input.pds-input-field__input::placeholder {
   color: #FFF;
 }
+
+.pds-card-icon {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  top: -20px;
+  margin: auto;
+  background-color: crimson;
+  border-radius: 50%;
+  text-align: center;
+  padding-top: 15px;
+}
+.pds-card__text-elements.pad-top-0 {
+  padding-top: 0;
+}

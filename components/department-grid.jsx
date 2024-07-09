@@ -1,0 +1,43 @@
+import Link from "next/link";
+import { Tags } from "./tags";
+import { Card } from "@pantheon-systems/pds-toolkit-react";
+
+const placeholderGradient =
+  "https://cdn.bfldr.com/MEM5087K/at/sv7z2hv795j7nv3qb3rvp3/gradient_1.png?auto=webp&format=png&width=600&height=380";
+
+const placeholderIcon = "logo-govicons";
+
+export const DepartmentGrid = ({ articles, headingLevel }) => {
+  return (
+    <div className="pds-grid">
+      {articles.map((article) => {
+        // Preprocess metadata for display.
+        const cardIcon = article.metadata.cardIcon;
+
+        return (
+          <IconCard
+            iconName={cardIcon || placeholderIcon}
+            headingText={article.title}
+            bodyText={article.metadata.Description}
+          />
+        );
+      })}
+    </div>
+  );
+};
+
+export default function IconCard({ iconName, headingText, bodyText }) {
+  const iconClass = "gi gi-4x gi-inverse gi-" + iconName;
+  return (
+<a className="pds-card pds-card--clickable pds-grid-item pds-grid-item--sm-2 pds-grid-item--md-4 pds-grid-item--lg-3" href="/articles/1tSGNjBUmCOIh6Ww9UtASvxr0GHM9BHGLYNDQk8ZfuFQ">
+  <div className="pds-card-icon">
+    <i className={iconClass}></i>
+  </div>
+  <div className="pds-card__text-elements pad-top-0">
+    <h2 className="pds-card__heading">{headingText}</h2>
+    <div className="pds-card__bodytext"><p>{bodyText}</p></div>
+  </div>
+</a>
+
+  );
+}

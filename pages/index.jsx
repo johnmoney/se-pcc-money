@@ -1,9 +1,8 @@
-import { CallOut } from '@pantheon-systems/pds-toolkit-react';
 import { NextSeo } from "next-seo";
 import Layout from "../components/layout";
 import Hero from "../components/hero-bg-image";
 import PageHeader from "../components/page-header";
-import { ArticleGrid } from "../components/article-grid";
+import { DepartmentGrid } from "../components/department-grid";
 import { getAllArticles } from "../lib/Articles";
 import { pdsConfig } from "../pds.config";
 
@@ -18,7 +17,7 @@ export default function Home({ articles }) {
 
       <PageHeader title="Municipality Services and Departments" />
       <section>
-        <ArticleGrid articles={articles} headingLevel="h2" />
+        <DepartmentGrid articles={articles} headingLevel="h2" />
       </section>
     </Layout>
   );
