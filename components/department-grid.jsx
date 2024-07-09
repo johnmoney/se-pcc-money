@@ -13,23 +13,27 @@ export const DepartmentGrid = ({ articles, headingLevel }) => {
       {articles.map((article) => {
         // Preprocess metadata for display.
         const cardIcon = article.metadata.cardIcon;
-
-        return (
-          <IconCard
-            iconName={cardIcon || placeholderIcon}
-            headingText={article.title}
-            bodyText={article.metadata.Description}
-          />
-        );
+        if (article.metadata.Category == "Department") {
+          return (
+            <IconCard
+              iconName={cardIcon || placeholderIcon}
+              headingText={article.title}
+              bodyText={article.metadata.Description}
+              primaryLink={`/department/${article.id}`}
+            />
+          );
+        }
+        else
+          return null;
       })}
     </div>
   );
 };
 
-export default function IconCard({ iconName, headingText, bodyText }) {
+export default function IconCard({ iconName, headingText, bodyText, primaryLink }) {
   const iconClass = "gi gi-4x gi-inverse gi-" + iconName;
   return (
-<a className="pds-card pds-card--clickable pds-grid-item pds-grid-item--sm-2 pds-grid-item--md-4 pds-grid-item--lg-3" href="/articles/1tSGNjBUmCOIh6Ww9UtASvxr0GHM9BHGLYNDQk8ZfuFQ">
+<a className="pds-card pds-card--clickable pds-grid-item pds-grid-item--sm-2 pds-grid-item--md-4 pds-grid-item--lg-3" href={primaryLink}>
   <div className="pds-card-icon">
     <i className={iconClass}></i>
   </div>

@@ -1,9 +1,9 @@
 import { Paginator } from "@pantheon-systems/nextjs-kit";
 import { NextSeo } from "next-seo";
-import Layout from "../../components/layout";
-import PageHeader from "../../components/page-header";
-import { DepartmentGrid } from "../../components/department-grid";
-import { getAllArticles } from "../../lib/Articles";
+import Layout from "../components/layout";
+import PageHeader from "../components/page-header";
+import { DepartmentGrid } from "../components/department-grid";
+import { getAllArticles, getAllDepartments } from "../lib/Articles";
 
 export default function ArticlesListTemplate({ articles }) {
   return (
@@ -22,7 +22,7 @@ export default function ArticlesListTemplate({ articles }) {
 }
 
 export async function getServerSideProps() {
-  const articles = await getAllArticles({}, {});
+  const articles = await getAllDepartments();
 
   return {
     props: {
