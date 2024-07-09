@@ -8,7 +8,7 @@ export default function PageHeader({ title }) {
             <h1 className="text-center xl:text-5xl lg:text-4xl md:text-3xl sm:text-2xl xs:text-xl font-semibold bg-gray-800 p-2 bg-opacity-40 rounded-sm">
               {title}
             </h1>
-            <InputText className='pds-spacing-mar-block-xl' id='search-form' type='search' label='Search site' showLabel={false} placeholder='Search site' hasSearchShortcut={true} />
+            <InputText className='pds-spacing-mar-block-xl' id={"hero-search"} type='search' label='Search site' showLabel={false} placeholder='Search for departments and services...' />
         </div>
     </div>
 </section>

@@ -23,7 +23,7 @@ export default function Layout({ children, footerMenu, preview }) {
 
       <Navbar
         mobileMenuMaxWidth={pdsConfig.mobileMenuBreakpoint}
-        containerWidth="standard"
+        containerWidth="wide"
         logoDisplay="sub-brand"
         logoSubBrand={{
           text: pdsConfig.siteName,
@@ -39,7 +39,7 @@ export default function Layout({ children, footerMenu, preview }) {
       </Navbar>
 
       <main className="mb-auto">
-        <Container width="standard">{children}</Container>
+        <Container width="wide">{children}</Container>
       </main>
       <Footer>
         <span className="mx-auto">

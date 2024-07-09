@@ -8,6 +8,15 @@ p {
 }
 
 /* TW hacks */
+@keyframes scaleUp {
+  0% {
+    transform: scale(1.0);
+  }
+  100% {
+    transform: scale(1.5);
+  }
+}
+
 .prose
   :where(tbody tr:last-child):not(
     :where([class~="not-prose"], [class~="not-prose"] *)
@@ -22,9 +31,14 @@ section.hero-section {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;  
+  overflow: hidden;
+}
+.hero-section .bg-cover {
+  animation: 5s ease-out 2s 1 scaleUp;
+  animation-fill-mode: forwards;
 }
 .hero-section h1,
 .hero-section .pds-input-text,
-.hero-section input#search-form::placeholder {
+.hero-section input.pds-input-field__input::placeholder {
   color: #FFF;
 }

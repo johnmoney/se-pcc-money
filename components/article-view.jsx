@@ -48,7 +48,7 @@ export default function ArticleView({ article }) {
   const showTOC = h2TagCount > pdsConfig.tableOfContentsHeadingCount;
 
   return (
-    <Container width="standard">
+    <Container width="wide">
       <div className="pds-spacing-pad-block-start-4xl max-w-screen-lg">
         {/* Render the header only. */}
         <ArticleRenderer

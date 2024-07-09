@@ -25,7 +25,7 @@ export const ArticleGrid = ({ articles, headingLevel }) => {
             }}
             primaryLink={<Link href={`/articles/${article.id}`}></Link>}
             bodyText={articleSummary}
-            className="pds-grid-item pds-grid-item--sm-2 pds-grid-item--md-4 pds-grid-item--lg-4"
+            className="pds-grid-item pds-grid-item--sm-2 pds-grid-item--md-4 pds-grid-item--lg-3"
           />
         );
       })}
