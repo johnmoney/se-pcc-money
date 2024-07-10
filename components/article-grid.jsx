@@ -14,7 +14,7 @@ export const ArticleGrid = ({ articles, headingLevel }) => {
         const cardImage = article.metadata.cardImage;
         const articleSummary = article.metadata.Description;
 
-        if (article.metadata.Category == "News") {
+        if (article.metadata['Content Type'] == "News") {
           return (
             <Card
               key={article.id}

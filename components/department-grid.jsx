@@ -10,7 +10,7 @@ export const DepartmentGrid = ({ articles, headingLevel }) => {
       {articles.map((article) => {
         // Preprocess metadata for display.
         const cardIcon = article.metadata.cardIcon;
-        if (article.metadata.Category == "Department") {
+        if (article.metadata['Content Type'] == "Department") {
           return (
             <IconCard
               key={article.id}
