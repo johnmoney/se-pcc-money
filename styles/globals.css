@@ -13,7 +13,7 @@ p {
     transform: scale(1.0);
   }
   100% {
-    transform: scale(1.5);
+    transform: scale(1.3);
   }
 }
 
@@ -39,9 +39,11 @@ section.hero-section {
 }
 .hero-section h1,
 .hero-section .pds-input-text,
-.hero-section input.pds-input-field__input::placeholder {
+.hero-section input.pds-input-field__input::placeholder,
+.hero-section input.pds-input-field__input {
   color: #FFF;
 }
+
 
 .pds-card-icon {
   position: relative;

@@ -25,7 +25,6 @@ export const Searchbar = () => {
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             router.push({
