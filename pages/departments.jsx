@@ -23,7 +23,7 @@ export default function ArticlesListTemplate({ articles }) {
 
 export async function getServerSideProps() {
   const articles = await getAllDepartments();
-
+  console.log("test");
   return {
     props: {
       articles,

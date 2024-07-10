@@ -3,6 +3,7 @@ import Layout from "../components/layout";
 import Hero from "../components/hero-bg-image";
 import PageHeader from "../components/page-header";
 import { DepartmentGrid } from "../components/department-grid";
+import { ArticleGrid } from "../components/article-grid";
 import { getAllArticles } from "../lib/Articles";
 import { pdsConfig } from "../pds.config";
 
@@ -19,12 +20,17 @@ export default function Home({ articles }) {
       <section>
         <DepartmentGrid articles={articles} headingLevel="h2" />
       </section>
+
+      <PageHeader title="Municipality News" />
+      <section>
+        <ArticleGrid articles={articles} headingLevel="h2" />
+      </section>
     </Layout>
   );
 }
 
 export async function getServerSideProps() {
-  const articles = await getAllArticles({}, {tagContains: "", titleContains: "", bodyContains: ""});
+  const articles = await getAllArticles();
   return {
     props: {
       articles,
